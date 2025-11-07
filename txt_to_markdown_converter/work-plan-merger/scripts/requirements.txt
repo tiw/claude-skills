@@ -1,0 +1,4 @@
+# 工作规划整合技能依赖包
+jieba>=0.42.1
+argparse
+pathlib

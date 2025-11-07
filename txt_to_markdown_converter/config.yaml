@@ -1,0 +1,251 @@
+# TXT to Markdown Converter Skill 配置文件
+
+# Skill基本信息
+skill_info:
+  name: "txt_to_markdown_converter"
+  display_name: "TXT转Markdown格式化器"
+  description: "智能将TXT文件转换为格式化的Markdown文档，提升文档结构和可读性"
+  version: "1.0.0"
+  author: "AI Assistant"
+  category: "文档处理"
+
+# 文件处理设置
+file_handling:
+  # 支持的文件扩展名
+  supported_extensions:
+    - .txt
+    - .text
+    - .log
+    - .md
+
+  # 自动备份原文件
+  backup_original: true
+
+  # 默认编码格式（按优先级尝试）
+  encoding:
+    - utf-8
+    - gbk
+    - gb2312
+    - ascii
+
+  # 输出文件设置
+  output:
+    suffix: "_formatted"
+    extension: ".md"
+    keep_original: true
+
+# 格式化规则配置
+formatting_rules:
+  # 标题检测与格式化
+  headings:
+    auto_detect: true
+    max_level: 6
+    min_length: 2
+    max_length: 50
+
+    # 标题关键词（自动提升标题级别）
+    keywords:
+      chinese:
+        - 概述
+        - 介绍
+        - 总结
+        - 结论
+        - 目标
+        - 功能
+        - 特性
+        - 说明
+        - 用法
+        - 注意
+        - 安装
+        - 配置
+        - 步骤
+        - 要求
+      english:
+        - introduction
+        - summary
+        - conclusion
+        - overview
+        - features
+        - description
+        - usage
+        - installation
+        - configuration
+        - steps
+        - requirements
+        - notes
+        - warning
+
+  # 列表格式化
+  lists:
+    auto_detect: true
+    convert_chinese_numbers: true
+    unify_symbols: true
+    indent_spaces: 2
+
+    # 中文数字映射
+    chinese_number_map:
+      "一": "1"
+      "二": "2"
+      "三": "3"
+      "四": "4"
+      "五": "5"
+      "六": "6"
+      "七": "7"
+      "八": "8"
+      "九": "9"
+      "十": "10"
+
+  # 表格检测与格式化
+  tables:
+    auto_detect: true
+    separator: " | "
+    min_columns: 2
+    min_rows: 2
+
+    # 表格检测策略
+    detection:
+      - tab_separated  # 制表符分隔
+      - space_separated  # 多空格分隔
+      - uniform_spacing  # 均匀间距
+
+  # 链接格式化
+  links:
+    auto_format_urls: true
+    add_brackets: true
+
+    # 支持的URL模式
+    url_patterns:
+      - "https?://[^\s]+"
+      - "www\.[^\s]+"
+      - "ftp://[^\s]+"
+      - "mailto:[^\s]+"
+
+  # 代码块保护
+  code_blocks:
+    preserve_formatting: true
+    detect_fences:
+      - "```"
+      - "~~~"
+      - "###"
+
+  # 强调文本
+  emphasis:
+    auto_emphasize: true
+
+    # 重要词汇列表
+    important_words:
+      chinese:
+        - 重要
+        - 关键
+        - 核心
+        - 主要
+        - 基本
+        - 必须
+        - 应该
+        - 注意
+        - 警告
+        - 提示
+      english:
+        - important
+        - key
+        - critical
+        - essential
+        - major
+        - basic
+        - required
+        - should
+        - must
+        - note
+        - warning
+        - tip
+
+  # 技术关键词高亮
+  keywords:
+    highlight_tech_terms: true
+
+    # 技术词汇列表
+    tech_keywords:
+      programming:
+        - API
+        - HTTP
+        - JSON
+        - XML
+        - HTML
+        - CSS
+        - JavaScript
+        - Python
+        - Java
+        - C++
+        - SQL
+        - Git
+        - CLI
+        - GUI
+        - REST
+        - CRUD
+      general:
+        - 数据库
+        - 算法
+        - 函数
+        - 变量
+        - 类
+        - 对象
+        - 方法
+        - 接口
+        - 模块
+        - 框架
+
+# 智能检测设置
+smart_detection:
+  # 段落边界检测
+  paragraph_boundaries:
+    empty_lines: true
+    indent_changes: true
+
+  # 标题上下文分析
+  title_context:
+    check_previous_line: true
+    check_next_line: true
+    require_boundary: true
+
+  # 列表层级检测
+  list_hierarchy:
+    detect_indentation: true
+    auto_numbering: true
+    max_nesting_level: 10
+
+# 输出选项
+output_options:
+  # 格式化强度
+  formatting_intensity:
+    minimal: "仅基本格式化"
+    standard: "标准格式化（推荐）"
+    aggressive: "最大格式化"
+
+  # 保留原始格式
+  preserve_original:
+    blank_lines: true
+    indentation: false
+    line_breaks: true
+
+  # 质量检查
+  quality_check:
+    validate_markdown: true
+    check_link_format: true
+    verify_table_structure: true
+
+# 错误处理
+error_handling:
+  # 编码错误处理
+  encoding_errors:
+    fallback_to_alternative: true
+    report_errors: false
+
+  # 文件错误处理
+  file_errors:
+    continue_on_error: false
+    create_backup: true
+
+  # 格式化错误处理
+  formatting_errors:
+    skip_problematic_lines: false
+    log_errors: true
